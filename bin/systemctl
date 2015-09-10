@@ -1,18 +1,20 @@
 #!/bin/bash
+
+SVC=${2%.service}
 case "$1" in
-	restart)
-		/etc/init.d/$2 restart
-	;;
-	stop)
-		/etc/init.d/$2 stop
-	;;
-	status)
-		/etc/init.d/$2 status
-	;;
-	start)
-		/etc/init.d/$2 start
-	;;
-	*)
-		command systemctloriginal "$@"
-	exit 1
+        restart)
+                /etc/init.d/$SVC restart
+        ;;
+        stop)
+                /etc/init.d/$SVC stop
+        ;;
+        status)
+                /etc/init.d/$SVC status
+        ;;
+        start)
+                /etc/init.d/$SVC start
+        ;;
+        *)
+                command systemctloriginal "$@"
+        exit 1
 esac

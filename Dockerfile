@@ -184,6 +184,8 @@ RUN service mysql restart && mysql -ppass < /tmp/ISPConfig_Clean-3.0.5/sql/ispc-
 RUN mkdir -p /var/backup/sql
 RUN freshclam
 
+RUN tar cfz /bootstrap.tgz /var/www /var/mail /var/backup /var/lib/mysql /etc /usr/local/ispconfig /var/log
+
 VOLUME ["/var/www/","/var/mail/","/var/backup/","/var/lib/mysql","/etc/","/usr/local/ispconfig","/var/log/"]
 
-CMD ["/bin/bash", "/start.sh"]
+CMD exec /start.sh
