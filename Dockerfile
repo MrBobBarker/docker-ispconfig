@@ -155,6 +155,10 @@ RUN service mysql restart
 # RUN sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 100M/g" /etc/php5/fpm/php.ini
 # RUN sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 100M/g" /etc/php5/fpm/php.ini
 
+# --- 21 Install Let's Encrypt client (certbot)
+RUN apt-get -y install python-certbot-apache -t jessie-backports
+
+
 # ADD ./etc/mysql/my.cnf /etc/mysql/my.cnf
 ADD ./etc/postfix/master.cf /etc/postfix/master.cf
 ADD ./etc/clamav/clamd.conf /etc/clamav/clamd.conf
