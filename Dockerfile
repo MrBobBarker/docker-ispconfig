@@ -142,6 +142,7 @@ RUN service fail2ban restart
 RUN apt-get -y install squirrelmail
 ADD ./etc/apache2/conf-enabled/squirrelmail.conf /etc/apache2/conf-enabled/squirrelmail.conf
 ADD ./etc/squirrelmail/config.php /etc/squirrelmail/config.php
+RUN chown root:www-data /etc/squirrelmail/config.php && chmod g+r /etc/squirrelmail/config.php
 RUN mkdir /var/lib/squirrelmail/tmp
 RUN chown www-data /var/lib/squirrelmail/tmp
 RUN service mysql restart
@@ -162,6 +163,7 @@ RUN apt-get -y install python-certbot-apache -t jessie-backports
 # ADD ./etc/mysql/my.cnf /etc/mysql/my.cnf
 ADD ./etc/postfix/master.cf /etc/postfix/master.cf
 ADD ./etc/clamav/clamd.conf /etc/clamav/clamd.conf
+RUN chown root:clamav /etc/clamav/clamd.conf && chmod g+r /etc/clamav/clamd.conf
 
 RUN echo "export TERM=xterm" >> /root/.bashrc
 
